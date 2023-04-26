@@ -11,10 +11,10 @@ return (
 			Home
 		</NavLink>
 		<NavLink to="/Confirm" activeStyle>
-			Page2
+			Confirm
 		</NavLink>
 		<NavLink to="/Results" activeStyle>
-			Page3
+			Results
 		</NavLink>
 		</NavMenu>
 	</Nav>
