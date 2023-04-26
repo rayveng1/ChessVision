@@ -1,0 +1,43 @@
+# Base-------------------------------------
+albumentations
+ipython
+jupyter
+matplotlib
+opencv-python
+opencv-python-headless
+Pillow
+PyYAML
+scikit-image
+scikit-learn
+scipy
+torch
+torchvision
+torchaudio
+numpy
+protobuf
+pandas
+tqdm
+
+# Logging----------------------------------
+wandb
+tensorboard
+
+# Extras----------------------------------
+pycocotools
+setuptools
+torchmetrics # Evaluation
+vision_transformers
+image-slicer
+
+# Model summary----------------------------
+torchinfo
+
+
+
+
+
+
+
+
+
+
