@@ -7,16 +7,13 @@ return (
 	<>
 	<Nav>
 		<NavMenu>
-		<NavLink to="/home" activeStyle>
+		<NavLink to="/Main" activeStyle>
 			Home
 		</NavLink>
-		<NavLink to="/page1" activeStyle>
-			Page1
-		</NavLink>
-		<NavLink to="/page2" activeStyle>
+		<NavLink to="/Confirm" activeStyle>
 			Page2
 		</NavLink>
-		<NavLink to="/page3" activeStyle>
+		<NavLink to="/Results" activeStyle>
 			Page3
 		</NavLink>
 		</NavMenu>

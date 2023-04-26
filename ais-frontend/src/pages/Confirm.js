@@ -1,7 +1,7 @@
 
 import React from "react";
 
-const Page2 = () => {
+const Confirm = () => {
 return (
 	<div>
 	<h1>
@@ -11,4 +11,4 @@ return (
 );
 };
 
-export default Page2;
+export default Confirm;
