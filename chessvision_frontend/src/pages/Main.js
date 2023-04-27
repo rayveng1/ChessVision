@@ -6,7 +6,7 @@ export default function Main() {
 	  <main className="max-w-2xl mx-auto">
 		ChessVision - Rayven/Connor/Piyush/Thejas
 		<div className="w-full h-full">
-		  <Roboflow modelName="piece-detection-htwfo" modelVersion="3" />
+		  <Roboflow modelName="piece-detection-rayven" modelVersion="4" />
 		</div>
 	  </main>
 	)
