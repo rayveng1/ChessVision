@@ -5,6 +5,8 @@ import sys
 import Board_Digitizer_Roboflow as script
 import os
 
+if os.path.exists("/Users/connorscally/Documents/GitHub/ChessVision/BoardDigitizer/chessboard_splits/.DS_Store"):
+    os.remove("/Users/connorscally/Documents/GitHub/ChessVision/BoardDigitizer/chessboard_splits/.DS_Store")
 
 sg.theme("DarkBlue")
 
@@ -33,10 +35,11 @@ while True:
                     break
                 window['-file1-'].update(filepath)
             else:
-                # print(filepath)
                 script.resizer(filepath)
                 script.imageSplitter()
-                print(script.infrencing())
+                FEN = script.fenConversion(script.infrencing())
+                script.chess(FEN)
+                script.evaluation()
                 break
 
 window.close()

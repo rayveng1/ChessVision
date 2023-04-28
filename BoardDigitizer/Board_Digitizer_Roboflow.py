@@ -1,8 +1,104 @@
+def evaluation():
+    from stockfish import Stockfish
+    Stockfish = Stockfish(path="/usr/local/Cellar/stockfish/15.1/bin/stockfish")
+    
+
+    Stockfish.set_fen_position("rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2")
+    print('\n')
+    print("The best move is:")
+    print(Stockfish.get_best_move())
+    print('\n')
+    print("The top three moves are:")
+    print(Stockfish.get_top_moves(3))
+    print('\n')
+    print("Printing Evaluation...")
+    print(Stockfish.get_evaluation())
+
+
+def chess(FEN):
+    import urllib.request
+    from PIL import Image
+
+    # FEN = "1R1K1B2/Pp1QP1PN/N1Pn4/4pPp1/2p5/5n2/pb2k1p1/4r3"
+
+    # Retrieving the resource located at the URL
+    # and storing it in the file name a.png
+    url = "https://fen2image.chessvision.ai" + FEN
+    # print("PLEASE WORK: ")
+    # print(FEN)
+    urllib.request.urlretrieve(url, "board.png")
+
+    # Opening the image and displaying it (to confirm its presence)
+    img = Image.open(r"board.png")
+    img.show()
+
+
+def fenConversion(input_arr):
+    l1 = ["black-rook", "black-knight", "black-bishop", "black-queen", "black-king", "black-pawn",
+          "white-rook", "white-knight", "white-bishop", "white-queen", "white-king", "white-pawn"]
+    l2 = ["r", "n", "b", "q", "k", "p", "R", "N", "B", "Q", "K", "P"]
+    zero_count = 0
+    final_string = ""
+    for i, piece in enumerate(input_arr):
+        piece = piece.lower()
+        if i % 8 == 0:
+            if zero_count > 0:
+                final_string += str(zero_count)
+                zero_count = 0
+            final_string += '/'
+
+        if piece not in l1:
+            zero_count += 1
+        else:
+            if zero_count > 0:
+                final_string += str(zero_count)
+                zero_count = 0
+            if piece == "black-rook":
+                final_string += "r"
+                continue
+            if piece == "black-knight":
+                final_string += "n"
+                continue
+            if piece == "black-bishop":
+                final_string += "b"
+                continue
+            if piece == "black-queen":
+                final_string += "q"
+                continue
+            if piece == "black-king":
+                final_string += "k"
+                continue
+            if piece == "black-pawn":
+                final_string += "p"
+                continue
+
+            if piece == "white-rook":
+                final_string += "R"
+                continue
+            if piece == "white-knight":
+                final_string += "N"
+                continue
+            if piece == "white-bishop":
+                final_string += "B"
+                continue
+            if piece == "white-queen":
+                final_string += "Q"
+                continue
+            if piece == "white-king":
+                final_string += "K"
+                continue
+            if piece == "white-pawn":
+                final_string += "P"
+                continue
+    return final_string[0:len(final_string) - 1]
+
+
 
 def imageSplitter():
 
     import image_slicer
     image_slicer.slice('../chessboard_splits/transformedImage.jpg', 64)
+    print("Splitting...")
 
 
 def resizer(filepath):
@@ -17,7 +113,6 @@ def resizer(filepath):
     image = cv2.imread(filepath)
     filename = 'transformedImage.jpg'
     imagePath = filepath
-    print(1)
     directory = r'/Users/connorscally/Documents/GitHub/ChessVision/BoardDigitizer/chessboard_splits'
     img = cv2.imread(imagePath)
     os.chdir(directory)
@@ -34,13 +129,14 @@ def resizer(filepath):
     M = cv2.getPerspectiveTransform(pts1, pts2)
     dst = cv2.warpPerspective(image, M, (500, 400))
     cv2.imwrite(filename, dst)
-    print(2)
+    print('\n')
+    print("Resizing...")
 
 
 def infrencing():
 
     # running model on each image created by image_slicer
-    print(3)
+    print("Running model...")
     import os
     from PIL import Image
     from os import listdir
@@ -60,7 +156,7 @@ def infrencing():
 
             prediction = (model.predict(
                 image, confidence=40, overlap=30).json())
-            print(prediction)
+            # print(prediction)
             if len(prediction["predictions"]) == 0:
                 eval = '[]'
             else:
@@ -77,13 +173,14 @@ def infrencing():
 
     text_file.close()
 
-    toArray()
+    return toArray()
 
 
 def toArray():
-    print(4)
     import numpy as np
 
     # Text file data converted to string data type
     piece_array = np.loadtxt("../classes.txt", dtype=str)
-    print(piece_array)
+    # print(piece_array)
+
+    return piece_array
