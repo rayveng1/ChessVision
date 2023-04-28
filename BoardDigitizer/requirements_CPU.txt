@@ -17,6 +17,7 @@ numpy
 protobuf
 pandas
 tqdm
+roboflow
 
 # Logging----------------------------------
 wandb
